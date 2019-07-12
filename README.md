@@ -10,6 +10,6 @@ await escpos.addLogo("./images/a.png");
 const lines: string[] = ["Tes", "1", "2", "3"];
 await escpos.addLines(lines);
 
-//
+// this buffer is ready to send to the printer
 const buffer = await escpos.getBuffer();
 ```
