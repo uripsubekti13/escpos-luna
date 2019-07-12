@@ -1,0 +1,24 @@
+{
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "compilerOptions": {
+        "outDir": "dist/",
+        "declaration": true,
+        "target": "es6",
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "noImplicitThis": true,
+        "noImplicitReturns": true,
+        "noLib": false,
+        "preserveConstEnums": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "types": ["node", "pngjs"]
+    }
+}

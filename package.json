@@ -1,0 +1,49 @@
+{
+  "name": "escpos-luna",
+  "version": "1.0.0",
+  "keywords": [
+    "esc/pos",
+    "escpos",
+    "typescript"
+  ],
+  "description": "Library for printing to ESC/POS compatible printers",
+  "main": "dist/index.js",
+  "typings": "dist/",
+  "files": [
+    "dist/"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uripsubekti13/escpos-luna.git"
+  },
+  "author": {
+    "name": "Urip Subekti",
+    "email": "urip.subekti13@gmail.com",
+    "url": "https://github.com/uripsubekti13"
+  },
+  "contributors": [],
+  "devDependencies": {
+    "@types/node": "10.12.17",
+    "@types/pngjs": "3.3.2",
+    "fs-extra": "7.0.1",
+    "ts-node": "^7.0.1",
+    "tslint": "5.12.0",
+    "typescript": "3.2.2"
+  },
+  "dependencies": {
+    "iconv-lite": "0.4.24",
+    "jimp": "^0.6.4",
+    "pngjs": "3.3.3"
+  },
+  "optionalDependencies": {},
+  "scripts": {
+    "compile": "tsc",
+    "lint": "tslint -c tslint.json -p tsconfig.json",
+    "pack": "npm run compile && node scripts/createPackageDir.js",
+    "preversion": "node scripts/isMaster.js && npm run lint",
+    "version": "npm run pack",
+    "test": "ts-node example/index.ts",
+    "postversion": "git push && git push --tags"
+  }
+}
