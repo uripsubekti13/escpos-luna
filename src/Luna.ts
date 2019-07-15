@@ -49,6 +49,10 @@ export default class LunaEscpos {
     this.printer.openDrawer();
   }
 
+  public async cutPaper() {
+    this.printer.cut();
+  }
+
   public async getBuffer() {
     const data = await this.printer.close();
     if (existsSync(path.join(this.tmpDir, this.filename))) {

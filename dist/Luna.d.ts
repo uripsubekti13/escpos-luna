@@ -8,5 +8,6 @@ export default class LunaEscpos {
     addLogo(imgPath: string): Promise<void>;
     addLines(lines: string[]): Promise<void>;
     openCashDrawer(): Promise<void>;
+    cutPaper(): Promise<void>;
     getBuffer(): Promise<Buffer>;
 }

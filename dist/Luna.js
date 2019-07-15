@@ -47,6 +47,11 @@ class LunaEscpos {
             this.printer.openDrawer();
         });
     }
+    cutPaper() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.printer.cut();
+        });
+    }
     getBuffer() {
         return __awaiter(this, void 0, void 0, function* () {
             const data = yield this.printer.close();
