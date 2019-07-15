@@ -6,6 +6,7 @@ export default class LunaEscpos {
     filename: string;
     constructor(tmpDir?: string);
     addLogo(imgPath: string): Promise<void>;
+    addText(text: string): Promise<void>;
     addLines(lines: string[]): Promise<void>;
     openCashDrawer(): Promise<void>;
     cutPaper(): Promise<void>;

@@ -41,6 +41,10 @@ export default class LunaEscpos {
     }
   }
 
+  public async addText(text: string) {
+    this.printer.writeLine(text);
+  }
+
   public async addLines(lines: string[]) {
     lines.forEach(line => this.printer.writeLine(line));
   }

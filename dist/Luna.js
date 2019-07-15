@@ -37,6 +37,11 @@ class LunaEscpos {
             }
         });
     }
+    addText(text) {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.printer.writeLine(text);
+        });
+    }
     addLines(lines) {
         return __awaiter(this, void 0, void 0, function* () {
             lines.forEach(line => this.printer.writeLine(line));
