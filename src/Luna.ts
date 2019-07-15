@@ -9,7 +9,8 @@ import {
   QRErrorCorrectLevel,
   RasterMode,
   TextMode,
-  Underline
+  Underline,
+  DrawerPin
 } from "./Commands";
 import Image from "./Image";
 import Printer from "./Printer";
@@ -50,7 +51,11 @@ export default class LunaEscpos {
   }
   
   public async openCashDrawer() {
-    this.printer.openDrawer();
+    this.printer.openDrawer(DrawerPin.Pin2);
+  }
+
+  public async openCashDrawer2() {
+    this.printer.openDrawer(DrawerPin.Pin5);
   }
 
   public async cutPaper() {

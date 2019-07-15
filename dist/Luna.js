@@ -49,7 +49,12 @@ class LunaEscpos {
     }
     openCashDrawer() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.printer.openDrawer();
+            this.printer.openDrawer(Commands_1.DrawerPin.Pin2);
+        });
+    }
+    openCashDrawer2() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.printer.openDrawer(Commands_1.DrawerPin.Pin5);
         });
     }
     cutPaper() {

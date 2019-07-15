@@ -9,6 +9,7 @@ export default class LunaEscpos {
     addText(text: string): Promise<void>;
     addLines(lines: string[]): Promise<void>;
     openCashDrawer(): Promise<void>;
+    openCashDrawer2(): Promise<void>;
     cutPaper(): Promise<void>;
     getBuffer(): Promise<Buffer>;
 }
