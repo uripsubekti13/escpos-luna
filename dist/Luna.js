@@ -42,6 +42,11 @@ class LunaEscpos {
             lines.forEach(line => this.printer.writeLine(line));
         });
     }
+    openCashDrawer() {
+        return __awaiter(this, void 0, void 0, function* () {
+            this.printer.openDrawer();
+        });
+    }
     getBuffer() {
         return __awaiter(this, void 0, void 0, function* () {
             const data = yield this.printer.close();

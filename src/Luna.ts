@@ -44,6 +44,10 @@ export default class LunaEscpos {
   public async addLines(lines: string[]) {
     lines.forEach(line => this.printer.writeLine(line));
   }
+  
+  public async openCashDrawer() {
+    this.printer.openDrawer();
+  }
 
   public async getBuffer() {
     const data = await this.printer.close();
