@@ -38,7 +38,7 @@ export default class LunaEscpos {
       const image = await Image.load(path.join(this.tmpDir, this.filename));
       this.printer.raster(image, RasterMode.Normal);
     } catch (error) {
-      throw error;
+      console.log(error);
     }
   }
 
