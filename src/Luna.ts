@@ -64,9 +64,9 @@ export default class LunaEscpos {
 
   public async getBuffer() {
     const data = await this.printer.close();
-    if (existsSync(path.join(this.tmpDir, this.filename))) {
-      unlinkSync(path.join(this.tmpDir, this.filename));
-    }
+    // if (existsSync(path.join(this.tmpDir, this.filename))) {
+    //   unlinkSync(path.join(this.tmpDir, this.filename));
+    // }
     return new Buffer(data);
   }
 }
