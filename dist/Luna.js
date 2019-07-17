@@ -13,6 +13,7 @@ const Image_1 = require("./Image");
 const Printer_1 = require("./Printer");
 const Jimp = require("jimp");
 const path = require("path");
+const fs_1 = require("fs");
 class LunaEscpos {
     constructor(tmpDir = "./") {
         this.filename = "logo.png";
@@ -27,7 +28,7 @@ class LunaEscpos {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const img = yield Jimp.read(imgPath);
-                img.write(path.join(this.tmpDir, this.filename));
+                yield img.writeAsync(path.join(this.tmpDir, this.filename));
                 const image = yield Image_1.default.load(path.join(this.tmpDir, this.filename));
                 this.printer.raster(image, Commands_1.RasterMode.Normal);
             }
@@ -64,6 +65,9 @@ class LunaEscpos {
     getBuffer() {
         return __awaiter(this, void 0, void 0, function* () {
             const data = yield this.printer.close();
+            if (fs_1.existsSync(path.join(this.tmpDir, this.filename))) {
+                fs_1.unlinkSync(path.join(this.tmpDir, this.filename));
+            }
             return new Buffer(data);
         });
     }

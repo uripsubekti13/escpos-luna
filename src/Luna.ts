@@ -34,7 +34,7 @@ export default class LunaEscpos {
   public async addLogo(imgPath: string) {
     try {
       const img = await Jimp.read(imgPath);
-      img.write(path.join(this.tmpDir, this.filename));
+      await img.writeAsync(path.join(this.tmpDir, this.filename));
       const image = await Image.load(path.join(this.tmpDir, this.filename));
       this.printer.raster(image, RasterMode.Normal);
     } catch (error) {
@@ -64,9 +64,9 @@ export default class LunaEscpos {
 
   public async getBuffer() {
     const data = await this.printer.close();
-    // if (existsSync(path.join(this.tmpDir, this.filename))) {
-    //   unlinkSync(path.join(this.tmpDir, this.filename));
-    // }
+    if (existsSync(path.join(this.tmpDir, this.filename))) {
+      unlinkSync(path.join(this.tmpDir, this.filename));
+    }
     return new Buffer(data);
   }
 }
