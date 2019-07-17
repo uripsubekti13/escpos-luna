@@ -28,6 +28,7 @@ class LunaEscpos {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const img = yield Jimp.read(imgPath);
+                img.resize(230, Jimp.AUTO);
                 yield img.writeAsync(path.join(this.tmpDir, this.filename));
                 const image = yield Image_1.default.load(path.join(this.tmpDir, this.filename));
                 this.printer.raster(image, Commands_1.RasterMode.Normal);

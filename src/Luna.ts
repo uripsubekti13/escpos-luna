@@ -34,6 +34,7 @@ export default class LunaEscpos {
   public async addLogo(imgPath: string) {
     try {
       const img = await Jimp.read(imgPath);
+      img.resize(230, Jimp.AUTO);
       await img.writeAsync(path.join(this.tmpDir, this.filename));
       const image = await Image.load(path.join(this.tmpDir, this.filename));
       this.printer.raster(image, RasterMode.Normal);
