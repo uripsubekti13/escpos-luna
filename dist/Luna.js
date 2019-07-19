@@ -24,9 +24,11 @@ class LunaEscpos {
             try {
                 const image = yield Image_1.default.load(imgPath);
                 this.printer.raster(image, Commands_1.RasterMode.Normal);
+                return this.printer;
             }
             catch (error) {
                 console.log(error);
+                return false;
             }
         });
     }

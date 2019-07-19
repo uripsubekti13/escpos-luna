@@ -4,7 +4,7 @@ export default class LunaEscpos {
     printer: Printer;
     tmpDir: string;
     constructor(encoding?: string);
-    addLogo(imgPath: string): Promise<void>;
+    addLogo(imgPath: string): Promise<false | Printer>;
     addText(text: string): Promise<void>;
     addLines(lines: string[]): Promise<void>;
     openCashDrawer(): Promise<void>;
