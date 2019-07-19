@@ -1,18 +1,13 @@
 import { Justification, RasterMode, DrawerPin } from "./Commands";
 import Image from "./Image";
 import Printer from "./Printer";
-import * as Jimp from "jimp";
 import * as path from "path";
 import { existsSync, unlinkSync } from "fs";
 
 export default class LunaEscpos {
   printer: Printer;
   tmpDir: string;
-  filename: string = "logo.png";
-  constructor(tmpDir: string = "./", encoding: string = "CP865") {
-    const timestamp = Math.floor(Date.now() / 1000);
-    this.filename = `logo_${timestamp}.png`;
-    this.tmpDir = tmpDir;
+  constructor(encoding: string = "CP865") {
     this.printer = new Printer(encoding);
     this.printer.open();
     this.printer.clearBuffer();
@@ -22,10 +17,7 @@ export default class LunaEscpos {
 
   public async addLogo(imgPath: string) {
     try {
-      const img = await Jimp.read(imgPath);
-      img.resize(230, Jimp.AUTO);
-      await img.writeAsync(path.join(this.tmpDir, this.filename));
-      const image = await Image.load(path.join(this.tmpDir, this.filename));
+      const image = await Image.load(imgPath);
       this.printer.raster(image, RasterMode.Normal);
     } catch (error) {
       console.log(error);

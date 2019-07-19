@@ -11,14 +11,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Commands_1 = require("./Commands");
 const Image_1 = require("./Image");
 const Printer_1 = require("./Printer");
-const Jimp = require("jimp");
-const path = require("path");
 class LunaEscpos {
-    constructor(tmpDir = "./", encoding = "CP865") {
-        this.filename = "logo.png";
-        const timestamp = Math.floor(Date.now() / 1000);
-        this.filename = `logo_${timestamp}.png`;
-        this.tmpDir = tmpDir;
+    constructor(encoding = "CP865") {
         this.printer = new Printer_1.default(encoding);
         this.printer.open();
         this.printer.clearBuffer();
@@ -28,10 +22,7 @@ class LunaEscpos {
     addLogo(imgPath) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const img = yield Jimp.read(imgPath);
-                img.resize(230, Jimp.AUTO);
-                yield img.writeAsync(path.join(this.tmpDir, this.filename));
-                const image = yield Image_1.default.load(path.join(this.tmpDir, this.filename));
+                const image = yield Image_1.default.load(imgPath);
                 this.printer.raster(image, Commands_1.RasterMode.Normal);
             }
             catch (error) {
