@@ -15,10 +15,10 @@ const Jimp = require("jimp");
 const path = require("path");
 const fs_1 = require("fs");
 class LunaEscpos {
-    constructor(tmpDir = "./") {
+    constructor(tmpDir = "./", encoding = "CP865") {
         this.filename = "logo.png";
         this.tmpDir = tmpDir;
-        this.printer = new Printer_1.default("CP865");
+        this.printer = new Printer_1.default(encoding);
         this.printer.open();
         this.printer.clearBuffer();
         this.printer.init();

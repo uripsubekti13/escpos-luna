@@ -22,9 +22,9 @@ export default class LunaEscpos {
   printer: Printer;
   tmpDir: string;
   filename: string = "logo.png";
-  constructor(tmpDir: string = "./") {
+  constructor(tmpDir: string = "./", encoding: string = "CP865") {
     this.tmpDir = tmpDir;
-    this.printer = new Printer("CP865");
+    this.printer = new Printer(encoding);
     this.printer.open();
     this.printer.clearBuffer();
     this.printer.init();
@@ -50,7 +50,7 @@ export default class LunaEscpos {
   public async addLines(lines: string[]) {
     lines.forEach(line => this.printer.writeLine(line));
   }
-  
+
   public async openCashDrawer() {
     this.printer.openDrawer(DrawerPin.Pin2);
   }
