@@ -13,10 +13,11 @@ const Image_1 = require("./Image");
 const Printer_1 = require("./Printer");
 const Jimp = require("jimp");
 const path = require("path");
-const fs_1 = require("fs");
 class LunaEscpos {
     constructor(tmpDir = "./", encoding = "CP865") {
         this.filename = "logo.png";
+        const timestamp = Math.floor(Date.now() / 1000);
+        this.filename = `logo_${timestamp}.png`;
         this.tmpDir = tmpDir;
         this.printer = new Printer_1.default(encoding);
         this.printer.open();
@@ -66,9 +67,6 @@ class LunaEscpos {
     getBuffer() {
         return __awaiter(this, void 0, void 0, function* () {
             const data = yield this.printer.close();
-            if (fs_1.existsSync(path.join(this.tmpDir, this.filename))) {
-                fs_1.unlinkSync(path.join(this.tmpDir, this.filename));
-            }
             return new Buffer(data);
         });
     }

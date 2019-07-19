@@ -1,17 +1,4 @@
-import {
-  Barcode,
-  CodeTable,
-  Font,
-  Justification,
-  PDF417ErrorCorrectLevel,
-  PDF417Type,
-  Position,
-  QRErrorCorrectLevel,
-  RasterMode,
-  TextMode,
-  Underline,
-  DrawerPin
-} from "./Commands";
+import { Justification, RasterMode, DrawerPin } from "./Commands";
 import Image from "./Image";
 import Printer from "./Printer";
 import * as Jimp from "jimp";
@@ -23,6 +10,8 @@ export default class LunaEscpos {
   tmpDir: string;
   filename: string = "logo.png";
   constructor(tmpDir: string = "./", encoding: string = "CP865") {
+    const timestamp = Math.floor(Date.now() / 1000);
+    this.filename = `logo_${timestamp}.png`;
     this.tmpDir = tmpDir;
     this.printer = new Printer(encoding);
     this.printer.open();
@@ -65,9 +54,9 @@ export default class LunaEscpos {
 
   public async getBuffer() {
     const data = await this.printer.close();
-    if (existsSync(path.join(this.tmpDir, this.filename))) {
-      unlinkSync(path.join(this.tmpDir, this.filename));
-    }
+    // if (existsSync(path.join(this.tmpDir, this.filename))) {
+    //   unlinkSync(path.join(this.tmpDir, this.filename));
+    // }
     return new Buffer(data);
   }
 }
