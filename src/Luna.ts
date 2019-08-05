@@ -26,6 +26,17 @@ export default class LunaEscpos {
     }
   }
 
+  public async addLogoEpsonTMU220(imgPath: string) {
+    try {
+      const image = await Image.load(imgPath);
+      this.printer.hoiImage(image);
+      return this.printer;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+
   public async addText(text: string) {
     this.printer.writeLine(text);
   }

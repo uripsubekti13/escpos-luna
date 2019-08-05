@@ -32,6 +32,19 @@ class LunaEscpos {
             }
         });
     }
+    addLogoEpsonTMU220(imgPath) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const image = yield Image_1.default.load(imgPath);
+                this.printer.hoiImage(image);
+                return this.printer;
+            }
+            catch (error) {
+                console.log(error);
+                return false;
+            }
+        });
+    }
     addText(text) {
         return __awaiter(this, void 0, void 0, function* () {
             this.printer.writeLine(text);

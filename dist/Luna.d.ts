@@ -5,6 +5,7 @@ export default class LunaEscpos {
     tmpDir: string;
     constructor(encoding?: string);
     addLogo(imgPath: string): Promise<false | Printer>;
+    addLogoEpsonTMU220(imgPath: string): Promise<false | Printer>;
     addText(text: string): Promise<void>;
     addLines(lines: string[]): Promise<void>;
     openCashDrawer(): Promise<void>;

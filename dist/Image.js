@@ -21,7 +21,9 @@ class Image {
                         for (let x = 0; x < this.width; x++) {
                             const idx = (this.width * y + x) * 4;
                             let value = false;
-                            if (this.data[idx] < 0xE6 || this.data[idx + 1] < 0xE6 || this.data[idx + 2] < 0xE6) {
+                            if (this.data[idx] < 0xe6 ||
+                                this.data[idx + 1] < 0xe6 ||
+                                this.data[idx + 2] < 0xe6) {
                                 value = true;
                             }
                             if (value && this.data[idx + 3] <= 0x80) {
@@ -46,7 +48,7 @@ class Image {
         for (let y = 0; y < this.height; y++) {
             for (let x = 0; x < this.width; x++) {
                 if (this.data[y * this.width + x]) {
-                    result[y * n + (x >> 3)] += (0x80 >> ((x % 8) & 0x7));
+                    result[y * n + (x >> 3)] += 0x80 >> (x % 8 & 0x7);
                 }
             }
         }
@@ -54,6 +56,35 @@ class Image {
             data: result,
             height: this.height,
             width: n
+        };
+    }
+    toBitmap(den) {
+        const density = den || 24;
+        var ld = [];
+        var result = [];
+        var x, y, b, l, i;
+        var c = density / 8;
+        var n = Math.ceil(this.height / density);
+        for (y = 0; y < n; y++) {
+            ld = result[y] = [];
+            for (x = 0; x < this.width; x++) {
+                for (b = 0; b < density; b++) {
+                    i = x * c + (b >> 3);
+                    if (ld[i] === undefined) {
+                        ld[i] = 0;
+                    }
+                    l = y * density + b;
+                    if (l < this.height) {
+                        if (this.data[l * this.width + x]) {
+                            ld[i] += 0x80 >> (b & 0x7);
+                        }
+                    }
+                }
+            }
+        }
+        return {
+            data: result,
+            density: density
         };
     }
 }

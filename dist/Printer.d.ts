@@ -27,6 +27,7 @@ export default class Printer {
     beep(): Printer;
     setLineSpacing(spacing?: number): Printer;
     raster(image: Image, mode?: RasterMode): Printer;
+    hoiImage(image: Image): Printer;
     writeLine(value: string, encoding?: string): Printer;
     writeList(values: string[], encoding?: string): Printer;
     close(): Promise<any>;

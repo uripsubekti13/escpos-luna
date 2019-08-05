@@ -5,6 +5,10 @@ export default class Image {
     private data;
     constructor(pixels: boolean[], width: number, height: number);
     toRaster(): IRaster;
+    toBitmap(den: any): {
+        data: any;
+        density: any;
+    };
 }
 export interface IRaster {
     data: Uint8Array;

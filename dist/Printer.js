@@ -11,8 +11,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const iconv = require("iconv-lite");
 const Commands_1 = require("./Commands");
 const MutableBuffer_1 = require("./MutableBuffer");
-const ESC = 0x1B;
-const GS = 0x1D;
+const ESC = 0x1b;
+const GS = 0x1d;
+const BITMAP_FORMAT = {
+    BITMAP_S8: new Uint8Array([ESC, 0x2a, 0x00]),
+    BITMAP_D8: new Uint8Array([ESC, 0x2a, 0x01]),
+    BITMAP_S24: new Uint8Array([ESC, 0x2a, 0x20]),
+    BITMAP_D24: new Uint8Array([ESC, 0x2a, 0x21])
+};
+new Uint8Array([ESC, 0x2a, 0x21]);
 class Printer {
     constructor(encoding = "ascii") {
         this.buffer = new MutableBuffer_1.default();
@@ -62,7 +69,7 @@ class Printer {
     setDoubleStrike(double = true) {
         this.write(ESC);
         this.write("G");
-        this.write(double ? 0xFF : 0);
+        this.write(double ? 0xff : 0);
         return this;
     }
     setInverse(inverse = true) {
@@ -219,6 +226,17 @@ class Printer {
         this.buffer.writeUInt16LE(raster.width);
         this.buffer.writeUInt16LE(raster.height);
         this.buffer.write(raster.data);
+        return this;
+    }
+    hoiImage(image) {
+        const n = 1;
+        const header = BITMAP_FORMAT[`BITMAP_S8`];
+        const bitmap = image.toBitmap(1 * 8);
+        bitmap.data.forEach((line) => {
+            this.buffer.write(header);
+            this.buffer.writeUInt16LE(line.length / n);
+            this.writeLine(line);
+        });
         return this;
     }
     writeLine(value, encoding) {
