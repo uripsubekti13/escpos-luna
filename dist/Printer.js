@@ -229,7 +229,7 @@ class Printer {
     }
     hoiImage(image) {
         const n = 1;
-        const header = BITMAP_FORMAT[`BITMAP_D8`];
+        const header = BITMAP_FORMAT[`BITMAP_S8`];
         const bitmap = image.toBitmap(1 * 8);
         this.setLineSpacing(16);
         bitmap.data.forEach((line) => __awaiter(this, void 0, void 0, function* () {

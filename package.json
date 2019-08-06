@@ -32,6 +32,7 @@
     "typescript": "3.2.2"
   },
   "dependencies": {
+    "get-pixels": "^3.3.2",
     "iconv-lite": "0.4.24",
     "jimp": "^0.6.4",
     "pngjs": "3.3.3"

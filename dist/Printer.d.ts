@@ -1,5 +1,6 @@
 import { Barcode, CodeTable, Color, DrawerPin, Font, Justification, PDF417ErrorCorrectLevel, PDF417Type, Position, QRErrorCorrectLevel, RasterMode, TextMode, Underline } from "./Commands";
 import Image from "./Image";
+import ImageBitmap from "./ImageBitmap";
 export default class Printer {
     private encoding;
     private buffer;
@@ -27,7 +28,7 @@ export default class Printer {
     beep(): Printer;
     setLineSpacing(spacing?: number): Printer;
     raster(image: Image, mode?: RasterMode): Printer;
-    hoiImage(image: Image): Printer;
+    hoiImage(image: ImageBitmap): Printer;
     writeLine(value: string, encoding?: string): Printer;
     writeList(values: string[], encoding?: string): Printer;
     close(): Promise<any>;

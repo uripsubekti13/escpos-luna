@@ -1,8 +1,7 @@
 import { Justification, RasterMode, DrawerPin } from "./Commands";
 import Image from "./Image";
+import ImageBitmap from "./ImageBitmap";
 import Printer from "./Printer";
-import * as path from "path";
-import { existsSync, unlinkSync } from "fs";
 
 export default class LunaEscpos {
   printer: Printer;
@@ -28,7 +27,7 @@ export default class LunaEscpos {
 
   public async addLogoEpsonTMU220(imgPath: string) {
     try {
-      const image = await Image.load(imgPath);
+      const image = await ImageBitmap.load(imgPath);
       this.printer.hoiImage(image);
       return this.printer;
     } catch (error) {

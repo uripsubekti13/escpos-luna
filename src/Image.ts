@@ -62,43 +62,6 @@ export default class Image {
     };
   }
 
-  public toBitmap(den: any) {
-    const density: any = den || 24;
-    var ld: any[] = []
-    var result = [];
-    var x, y, b, l, i;
-    var c = density / 8;
-
-    // n blocks of lines
-    var n = Math.ceil(this.height / density);
-
-    for (y = 0; y < n; y++) {
-      // line data
-      ld = result[y] = [];
-
-      for (x = 0; x < this.width; x++) {
-        for (b = 0; b < density; b++) {
-          i = x * c + (b >> 3);
-
-          if (ld[i] === undefined) {
-            ld[i] = 0;
-          }
-
-          l = y * density + b;
-          if (l < this.height) {
-            if (this.data[l * this.width + x]) {
-              ld[i] += 0x80 >> (b & 0x7);
-            }
-          }
-        }
-      }
-    }
-
-    return {
-      data: result as any,
-      density: density
-    };
-  }
 }
 
 export interface IRaster {

@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const Commands_1 = require("./Commands");
 const Image_1 = require("./Image");
+const ImageBitmap_1 = require("./ImageBitmap");
 const Printer_1 = require("./Printer");
 class LunaEscpos {
     constructor(encoding = "CP865") {
@@ -35,7 +36,7 @@ class LunaEscpos {
     addLogoEpsonTMU220(imgPath) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const image = yield Image_1.default.load(imgPath);
+                const image = yield ImageBitmap_1.default.load(imgPath);
                 this.printer.hoiImage(image);
                 return this.printer;
             }

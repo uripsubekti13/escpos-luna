@@ -1,10 +1,13 @@
 export default class Image {
     static load(path: string): Promise<Image>;
-    width: number;
-    height: number;
+    pixels: any;
     private data;
-    constructor(pixels: boolean[], width: number, height: number);
-    toRaster(): IRaster;
+    constructor(pixels: any);
+    private readonly size;
+    toBitmap(den: any): {
+        data: any;
+        density: any;
+    };
 }
 export interface IRaster {
     data: Uint8Array;

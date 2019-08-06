@@ -15,6 +15,7 @@ import {
   Underline
 } from "./Commands";
 import Image from "./Image";
+import ImageBitmap from "./ImageBitmap";
 import MutableBuffer from "./MutableBuffer";
 
 const ESC = 0x1b;
@@ -298,9 +299,9 @@ export default class Printer {
     return this;
   }
 
-  public hoiImage(image: Image): Printer {
+  public hoiImage(image: ImageBitmap): Printer {
     const n = 1;
-    const header = BITMAP_FORMAT[`BITMAP_D8`];
+    const header = BITMAP_FORMAT[`BITMAP_S8`];
     const bitmap = image.toBitmap(1 * 8);
     this.setLineSpacing(16);
     bitmap.data.forEach(async (line: any) => {
