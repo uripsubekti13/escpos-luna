@@ -19,7 +19,6 @@ const BITMAP_FORMAT = {
     BITMAP_S24: new Uint8Array([ESC, 0x2a, 0x20]),
     BITMAP_D24: new Uint8Array([ESC, 0x2a, 0x21])
 };
-new Uint8Array([ESC, 0x2a, 0x21]);
 class Printer {
     constructor(encoding = "ascii") {
         this.buffer = new MutableBuffer_1.default();
@@ -230,13 +229,20 @@ class Printer {
     }
     hoiImage(image) {
         const n = 1;
-        const header = BITMAP_FORMAT[`BITMAP_S8`];
+        const header = BITMAP_FORMAT[`BITMAP_D8`];
         const bitmap = image.toBitmap(1 * 8);
-        bitmap.data.forEach((line) => {
+        this.setLineSpacing(16);
+        bitmap.data.forEach((line) => __awaiter(this, void 0, void 0, function* () {
             this.buffer.write(header);
             this.buffer.writeUInt16LE(line.length / n);
-            this.writeLine(line);
-        });
+            this.write(line);
+            yield new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(true);
+                }, 200);
+            });
+        }));
+        this.setLineSpacing();
         return this;
     }
     writeLine(value, encoding) {
