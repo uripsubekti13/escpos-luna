@@ -9,19 +9,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const getPixels = require("get-pixels");
-class Image {
+class ImageBitmap {
     static load(path) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise(resolve => {
                 getPixels(path, function (err, pixels) {
-                    resolve(new Image(pixels));
+                    resolve(new ImageBitmap(pixels));
                 });
             });
         });
     }
     constructor(pixels) {
-        if (!(this instanceof Image))
-            return new Image(pixels);
+        if (!(this instanceof ImageBitmap))
+            return new ImageBitmap(pixels);
         this.pixels = pixels;
         this.data = [];
         const rgb = (pixel) => {
@@ -81,4 +81,4 @@ class Image {
         };
     }
 }
-exports.default = Image;
+exports.default = ImageBitmap;

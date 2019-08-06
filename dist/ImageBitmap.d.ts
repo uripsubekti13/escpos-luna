@@ -1,5 +1,5 @@
-export default class Image {
-    static load(path: string): Promise<Image>;
+export default class ImageBitmap {
+    static load(path: string): Promise<ImageBitmap>;
     pixels: any;
     private data;
     constructor(pixels: any);

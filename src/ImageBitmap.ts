@@ -7,11 +7,11 @@ interface GetPixel {
   offset: number;
 }
 
-export default class Image {
-  public static async load(path: string): Promise<Image> {
+export default class ImageBitmap {
+  public static async load(path: string): Promise<ImageBitmap> {
     return new Promise(resolve => {
       getPixels(path, function(err: any, pixels: any) {
-        resolve(new Image(pixels));
+        resolve(new ImageBitmap(pixels));
       });
     });
   }
@@ -20,7 +20,7 @@ export default class Image {
   private data: any[];
 
   constructor(pixels: any) {
-    if (!(this instanceof Image)) return new Image(pixels);
+    if (!(this instanceof ImageBitmap)) return new ImageBitmap(pixels);
     this.pixels = pixels;
     this.data = [];
     const rgb = (pixel: any) => {
