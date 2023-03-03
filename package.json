@@ -34,7 +34,7 @@
   "dependencies": {
     "get-pixels": "^3.3.2",
     "iconv-lite": "0.4.24",
-    "jimp": "^0.6.4",
+    "jimp": "^0.22.7",
     "pngjs": "3.3.3"
   },
   "optionalDependencies": {},
